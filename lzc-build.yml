@@ -1,0 +1,13 @@
+manifest: ./lzc-manifest.yml
+pkgout: ./.lazycat-build
+icon: ./icon.png
+contentdir: ./content
+compose_override:
+  services:
+    tradis:
+      # The panel manages the host Docker daemon, so it needs the socket that
+      # the LazyCat manifest cannot express itself.
+      volumes:
+        - /var/run/docker.sock:/var/run/docker.sock:ro
+      extra_hosts:
+        - "host.docker.internal:host-gateway"

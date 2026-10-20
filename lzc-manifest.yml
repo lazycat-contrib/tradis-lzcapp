@@ -1,0 +1,40 @@
+application:
+  subdomain: tradis
+  public_path:
+    - /
+  upstreams:
+    - location: /
+      backend: http://tradis:8080/
+  injects:
+    # Compose editing and template import use native file pickers, which the
+    # store requires to route through the LazyCat cloud drive.
+    - id: open-save-chooser
+      on: browser
+      when:
+        - /*
+      do:
+        - src: file:///lzcapp/pkg/content/lazycat-injects/lzc-file-chooser-inject.js
+
+services:
+  tradis:
+    # coracoo/tradis:v0.9.8.1
+    image: docker.1ms.run/coracoo/tradis:v0.9.8.1
+    environment:
+      - TZ=Asia/Shanghai
+      - BACKEND_PORT=8080
+      - GIN_MODE=release
+      - JWT_SECRET={{ stable_secret "tradis_jwt_secret" }}
+      - ADMIN_PASSWORD={{ .U.admin_password }}
+      - PROJECT_ROOT={{ .U.project_root }}
+      - ALLOWED_ORIGINS=*
+    binds:
+      - /lzcapp/var/data:/app/client/backend/data
+      - /lzcapp/var/projects:{{ .U.project_root }}
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - nc -z 127.0.0.1 8080
+      interval: 30s
+      timeout: 5s
+      start_period: 30s
+      retries: 3

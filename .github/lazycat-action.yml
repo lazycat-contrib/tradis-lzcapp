@@ -1,0 +1,39 @@
+version: 1
+project:
+  root: .
+  build_config: lzc-build.yml
+  package_file: package.yml
+  output: .lazycat-build/tradis.lpk
+  target_arch: amd64
+update:
+  strategy: publish
+  allow_downgrade: false
+  version_source:
+    type: image
+    image: tradis
+build:
+  toolchains: []
+  run_buildscript: false
+images:
+- id: tradis
+  target: service
+  service: tradis
+  source: docker.io/coracoo/tradis
+  channel: custom
+  sort: semver
+  tag_regex: ^v[0-9]+[.][0-9]+[.][0-9]+$
+  delivery:
+    mode: mirror
+    image_template: docker.1ms.run/coracoo/tradis:{tag}
+    require_digest_match: true
+stores:
+  official:
+    enabled: false
+    skip_if_version_exists: false
+    retry:
+      enabled: false
+  private:
+    enabled: true
+    skip_if_version_exists: true
+    name: Tradis 容器面板
+    summary: 面向 NAS 新手的 Docker 管理面板，内置应用模板与 Compose 编辑

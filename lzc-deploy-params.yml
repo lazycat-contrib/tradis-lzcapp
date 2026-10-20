@@ -1,0 +1,22 @@
+params:
+  - id: admin_password
+    type: secret
+    name: "Admin Password"
+    description: "Initial password for the admin account (user name: admin)"
+    default_value: "Tradis2026"
+    optional: false
+  - id: project_root
+    type: string
+    name: "Project Root"
+    description: "Absolute path inside the container where Compose projects are stored"
+    default_value: "/lzcapp/var/projects"
+    optional: false
+
+locales:
+  zh:
+    admin_password:
+      name: "管理员密码"
+      description: "admin 账号的初始密码"
+    project_root:
+      name: "项目根目录"
+      description: "Compose 项目在容器内的存储路径"

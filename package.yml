@@ -1,0 +1,22 @@
+package: community.lazycat.app.tradis
+version: 0.9.8
+name: Tradis
+description: A Docker management panel for NAS newcomers, browse images and run services from one console
+min_os_version: 1.5.0
+homepage: https://github.com/coracoo/tradis_docker
+author: coracoo
+license: MIT
+locales:
+  zh:
+    name: Tradis 容器面板
+    description: 面向 NAS 新用户的 Docker 管理面板，在一个控制台里浏览镜像、部署容器服务
+  zh_CN:
+    name: Tradis 容器面板
+    description: 面向 NAS 新用户的 Docker 管理面板，在一个控制台里浏览镜像、部署容器服务
+  en:
+    name: Tradis
+    description: A Docker management panel for NAS newcomers, browse images and run services from one console
+unsupported_platforms:
+  - ios
+  - android
+  - tvos
