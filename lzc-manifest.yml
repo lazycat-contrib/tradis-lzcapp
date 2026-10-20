@@ -14,11 +14,11 @@ application:
         - /*
       do:
         - src: file:///lzcapp/pkg/content/lazycat-injects/lzc-file-chooser-inject.js
-
 services:
   tradis:
     # coracoo/tradis:v0.9.8.1
-    image: docker.1ms.run/coracoo/tradis:v0.9.8.1
+    # upstream: docker.io/coracoo/tradis:v0.9.8
+    image: docker.1ms.run/coracoo/tradis:v0.9.8
     environment:
       - TZ=Asia/Shanghai
       - BACKEND_PORT=8080
