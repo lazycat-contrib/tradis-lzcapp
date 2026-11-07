@@ -1,5 +1,5 @@
 package: community.lazycat.app.tradis
-version: 0.9.8
+version: 0.9.9
 name: Tradis
 description: A Docker management panel for NAS newcomers, browse images and run services from one console
 min_os_version: 1.5.0
